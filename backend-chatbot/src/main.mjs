@@ -16,7 +16,7 @@ app.use('/',route);
 app.set('view engine', 'ejs');
 
 const serverStart = async () => {
-    await connectDB();  //connecting to database
+    // await connectDB();  //connecting to database
     app.listen(port, () => console.log(`Connected to server at port no. ${port}`));     //listening incoming request
 }
 
