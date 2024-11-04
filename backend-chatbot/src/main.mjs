@@ -12,7 +12,7 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 app.use(cookieParser());
-app.use('/',route);
+app.use('/sgdms/',route);
 app.set('view engine', 'ejs');
 
 const serverStart = async () => {

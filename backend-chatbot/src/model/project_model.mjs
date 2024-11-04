@@ -16,12 +16,12 @@ const projectSchema = new mongoose.Schema({    //schema for storing different pr
     projectName: {
         type: String,
         // required: true,
-        unique: true
+        // unique: true
     },
     projectCode: {
         type: String,
         // required: true,
-        unique: true
+        // unique: true
     },
     technical: {
         questionSchema

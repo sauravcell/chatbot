@@ -3,13 +3,13 @@ import { project_db } from "../model/project_model.mjs";
 import { responseHandler } from "../utilities/responseHandler.mjs";
 import axios from "axios";
 
-const chatbot = 'https://testbot-680845.zapier.app/'
+// const chatbot = 'https://testbot-680845.zapier.app/'
 const route = express.Router();
 //testing route
 
 route.get("/", (req, res) => {
     console.log("Chatbot running..!");
-    res.status(200).json({ msg: "Welcome to ZN chatbot" });
+    res.status(200).json({ msg: "Welcome to SGDMS chatbot" });
 })
 
 
