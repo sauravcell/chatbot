@@ -5,12 +5,7 @@ import axios from "axios";
 
 // const chatbot = 'https://testbot-680845.zapier.app/'
 const route = express.Router();
-//testing route
 
-route.get("/", (req, res) => {
-    console.log("Chatbot running..!");
-    res.status(200).json({ msg: "Welcome to SGDMS chatbot" });
-})
 
 
 //add new project details

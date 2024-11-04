@@ -22,6 +22,13 @@ const serverStart = async () => {
 
 serverStart();
 
+//testing route
+
+app.get("/", (req, res) => {
+    console.log("Chatbot running..!");
+    res.status(200).json({ msg: "Welcome to SGDMS chatbot" });
+})
+
 
 
 
