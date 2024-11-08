@@ -1,52 +1,102 @@
 import express from "express";
-import { project_db } from "../model/project_model.mjs";
+import { chatbot } from "../model/project_model.mjs";
 import { responseHandler } from "../utilities/responseHandler.mjs";
-import axios from "axios";
+
 
 // const chatbot = 'https://testbot-680845.zapier.app/'
 const route = express.Router();
 
-
-
-//add new project details
-route.post('/project', async (req, res) => {
-    const { projectName, projectCode, questions } = req.body;
-    console.log(req.body)
+//add technical questions
+route.post(`/technical`, async (req, res) => {
+    const { technical } = req.body;
+    console.log('Request=> ', technical);
     try {
-        const newProject = new project_db({ projectName, projectCode, questions });
-        const savedProject = await newProject.save();
-        console.log(savedProject);
-        responseHandler.success('New project details added!', 201, null, res);
+        const questions = await chatbot.technical_db.insertMany(technical);
+        console.log(questions);
+        responseHandler.success('Technical questions added!', 201, questions, res);
     } catch (error) {
         console.error(error);
-        responseHandler.error('Project details not saved!', 500, res);
+        responseHandler.error("Questions not inserted!", 500, error, res);
     }
 });
 
-//add questions using project code
-route.post('/question', async (req, res) => {
-    const { projectCode } = req.query;
-    const { questions } = req.body;
-    console.log(projectCode, questions)
+//add tutorial guides
+route.post(`/tutorial`, async (req, res) => {
+    const { tutorial } = req.body;
+    console.log('Request=> ', tutorial);
     try {
-        const updatedFile = await project_db.findOneAndUpdate(
-            {  }, // find condition
-            { $push: { questions: { $each: questions } } }, // update operation
-            { 
+        const questions = await chatbot.tutorial_db.insertMany(tutorial);
+        console.log(questions);
+        responseHandler.success('Tutorial questions added!', 201, questions, res);
+    } catch (error) {
+        console.error(error);
+        responseHandler.error("Questions not inserted!", 500, error, res);
+    }
+});
+
+
+//get technical question and id
+route.get('/technicalQuestion', async (req, res) => {
+    try {
+        const questions = await chatbot.technical_db.find(
+            {},
+            {
+                "answer": 1,
+                "question": 1,
+            }
+        );
+        console.log('Technical issues => ', questions)
+        if (!questions)
+            responseHandler.error('Questions not found.', 500, res);
+        responseHandler.success('Questions fetched successfully', 200, questions, res);
+    } catch (error) {
+        console.error(error);
+        responseHandler.error('Questions not found', 500, res)
+    }
+});
+
+//get tutorial question and id
+route.get('/tutorialQuestion', async (req, res) => {
+    try {
+        const questions = await chatbot.tutorial_db.find(
+            {},
+            {
+                "_id": 1,
+                "question": 1,
+            }
+        );
+        console.log('Tutorial guides=> ', questions)
+        if (!questions)
+            responseHandler.error('Guides not found.', 500, res);
+        responseHandler.success('Guides fetched successfully', 200, questions, res);
+    } catch (error) {
+        console.error(error);
+        responseHandler.error('Error in fetching guides!', 500, res)
+    }
+});
+
+/*
+
+//add questions using project code 
+route.put('/question', async (req, res) => {
+    // const { projectCode } = req.query;
+    const { technical, tutorial } = req.body;
+    console.log(technical, tutorial)
+    try {
+        const updatedFile = await chatbot.project_db.findOneAndUpdate(
+            { projectName: "SGDMS" }, // find condition
+            {
+                $push: {
+                    technical: { $each: technical },
+                    tutorial: { $each: tutorial }
+                },
+            }, // update operation
+            {
                 new: true, // return the updated document
                 runValidators: true // run schema validators on update
             }
         );
-        // await project_db.findOneAndUpdate(
-        //     {
-        //         projectCode
-        //     },
-        //     {
-        //         $push: { questions }
-        //     },
-        //     {
-        //         new: true
-        //     });
+
         console.log(updatedFile);
         if (updatedFile)
             responseHandler.success('Questions added suessfully', 201, null, res);
@@ -64,7 +114,7 @@ route.get('/questionList', async (req, res) => {
     const { projectCode } = req.query;
     console.log('questionList', projectCode)
     try {
-        const viewFile = await project_db.find({ projectCode })
+        const viewFile = await chatbot.project_db.find({ projectCode })
         console.log(viewFile);
         // if (viewFile)
         //     responseHandler.success('Questions fetched successfully', 20, viewFile, res);
@@ -77,46 +127,11 @@ route.get('/questionList', async (req, res) => {
     }
 })
 
-//get question and id
-route.get('/questions',async (req, res) => {
-    const { projectCode } = req.query;
-    console.log("viewing faq: ", projectCode);
-    try {
-        // const viewFile = await project_db.find({ projectCode: projectCode }, { 'questions': 1 })
-        const viewFile = await project_db.find(
-            { projectCode },
-            {
-                "_id": 0,
-                "questions.question": 1,
-                "questions._id": 1
-            }
-        )
-        if (!viewFile)
-            responseHandler.error('Questions not found.', 500, res);
+*/
 
-        responseHandler.success('Questions fetched successfully', 20, viewFile, res);
-    } catch (error) {
-        console.error(error);
-        responseHandler.error('server error', 500, res)
-    }
-})
+export default route;
+
 
 //to create route for updating questions, fetching questions, deleting questions
 
-
-
-// for zapier test
-route.get('/zapierBot', async (req, res) => {
-        try {
-          const response =  axios.get(chatbot);
-          res.json({message: "shit's working yo", data: response.data});
-        } catch (error) {
-            console.log('Something went wrong', error)
-          res.status(500).send("Error fetching content.");
-        }
-})
-
-
 //new route to add technical problem question
-
-export default route;
