@@ -115,9 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function loadQuestions(category) {
     console.log(category)
-    fetch(`https://chatbot-jcnp.onrender.com/sgdms/${category}`, {
-
-    })
+    fetch(`https://chatbot-jcnp.onrender.com/sgdms/${category}`)
       .then((response) => response.json())
       .then((data) => {
         // Create container for questions

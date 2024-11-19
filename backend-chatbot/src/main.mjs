@@ -9,15 +9,12 @@ dotenv.config();
 
 const port = process.env.PORT || 9000;
 const corsOptions = {
-    origin: 'https://statuesque-daffodil-497f00.netlify.app', // Replace with allowed origin(s)
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true, // If credentials are used
+    origin: 'https://statuesque-daffodil-497f00.netlify.app'     // Replace with allowed origin(s)
   };
 
 const app = express();
 // app.use(cors());
-app.use( cors(corsOptions));
+app.use('*', cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/sgdms', route);
