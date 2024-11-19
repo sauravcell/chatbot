@@ -4,23 +4,19 @@ export const sgdmsChatbot = {
     "technical": [
         {
             "question": "Issue with bins status?",
-            "answer": "Dustbin status solutions.<br>"
+            "answer": "1. Bin status solutions.<br><br>2. Bin status solutions.<br><br>3. Bin status solutions.<br><br>"
+        },
+        {
+            "question": "Bin location not available?",
+            "answer": "1. Location solutions.<br><br>2. Location solutions.<br><br>3. Location solutions.<br><br>",
+        },
+        {
+            "question": "Unable to update driver details?",
+            "answer": "1. Solution for driver details update.<br><br>2. Solution for driver details update.<br><br>3. Solution for driver details update.<br><br>",
         },
         {
             "question": "Issue with notifications?",
-            "answer": "Notification solutions.",
-        },
-        {
-            "question": "Issue with notifications?",
-            "answer": "Notification solutions.",
-        },
-        {
-            "question": "Issue with notifications?",
-            "answer": "Notification solutions.",
-        },
-        {
-            "question": "Issue with notifications?",
-            "answer": "Notification solutions.",
+            "answer": "1. Notification solutions.<br<br>2. Notification solutions.<br<br>3. Notification solutions.<br<br>",
         }
     ],
     "tutorial": [
@@ -30,20 +26,15 @@ export const sgdmsChatbot = {
         },
         {
             "question": "How analytics works?",
-            "answer": "Analytics explanation."
+            "answer": "1. Explanation.<br>2. Explanation.<br>3. Explanation."
         },
         {
-            "question": "How analytics works?",
-            "answer": "Analytics explanation."
+            "question": "How to update driver details?",
+            "answer": "1. Explanation.<br>2. Explanation.<br>3. Explanation."
         },
         {
-            "question": "How analytics works?",
-            "answer": "Analytics explanation."
-        },
-        {
-            "question": "How analytics works?",
-            "answer": "Analytics explanation."
+            "question": "How to get bin location?",
+            "answer": "1. Explanation.<br>2. Explanation.<br>3. Explanation."
         }
-
     ]
 }
