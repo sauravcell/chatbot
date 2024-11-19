@@ -13,7 +13,6 @@ export const techQuestion = async () => {
             if (!tech)
                 console.error("error creating technical db")
         }
-        await chatbot.technical_db.insertMany(sgdmsChatbot.technical);
         console.log('sgdms tech problems-solutions created!')
 
     } catch (error) {
@@ -33,7 +32,6 @@ export const guides = async () => {
             if (!tech)
                 console.error("error creating tutorial db")
         }
-        await chatbot.tutorial_db.insertMany(sgdmsChatbot.tutorial);
         console.log('sgdms tech problems-solutions created!')
 
     } catch (error) {

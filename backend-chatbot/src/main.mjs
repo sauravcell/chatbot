@@ -8,13 +8,9 @@ import { guides, techQuestion } from "./utilities/createQuestions.mjs";
 dotenv.config();
 
 const port = process.env.PORT || 9000;
-const corsOptions = {
-    origin: '*'    // Replace with allowed origin(s)
-  };
 
 const app = express();
-// app.use(cors());
-app.use('*', cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use('/sgdms', route);
