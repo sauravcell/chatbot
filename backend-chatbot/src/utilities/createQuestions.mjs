@@ -46,6 +46,7 @@ export const update = async () => {
     try {
         // check db for questions 
         const check = await chatbot.update_db.estimatedDocumentCount();
+        console.log(check);
         if (check > 0) {
             console.log('updates details already exists')
         } else {

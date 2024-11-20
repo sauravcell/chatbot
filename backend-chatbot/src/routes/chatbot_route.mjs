@@ -75,6 +75,7 @@ route.get('/tutorialQuestion', async (req, res) => {
     }
 });
 
+//route to get last update details
 route.get('/update', async (req, res) => {
     try {
         const data = await chatbot.update_db.find({}, {
@@ -93,6 +94,3 @@ route.get('/update', async (req, res) => {
 export default route;
 
 
-//to create route for updating questions, fetching questions, deleting questions
-
-//new route to add technical problem question
