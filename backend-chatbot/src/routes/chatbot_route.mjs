@@ -79,8 +79,8 @@ route.get('/tutorialQuestion', async (req, res) => {
 route.get('/update', async (req, res) => {
     try {
         const data = await chatbot.update_db.find({}, {
-            "description": 1,
-            "_id": 0
+            "answer": 1,
+            "question": 1,
         });
         console.log('updates', data);
         if (!data)
