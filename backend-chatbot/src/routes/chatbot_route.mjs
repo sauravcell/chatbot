@@ -75,6 +75,21 @@ route.get('/tutorialQuestion', async (req, res) => {
     }
 });
 
+route.get('/update', async (req, res) => {
+    try {
+        const data = await chatbot.update_db.find({}, {
+            "description": 1
+        });
+        console.log('updates',data);
+        if (!data)
+            responseHandler.error('updates not found.', 500, res);
+        responseHandler.success('updates fetched successfully', 200, data, res);
+    } catch (error) {
+        console.error(error);
+        responseHandler.error('Error in fetching update details!', 500, res)
+    }
+})
+
 export default route;
 
 

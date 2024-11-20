@@ -1,7 +1,7 @@
-import mongoose, { Types } from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 
 const questionSchema = new mongoose.Schema({    //schema for storing questions with answer
-    _id:{
+    _id: {
         type: mongoose.Types.ObjectId,
         default: new Types.ObjectId()
     },
@@ -29,7 +29,7 @@ const technical = new mongoose.Schema({    //schema for storing TECHNICAL questi
         type: String,
         required: true
     },
-    createdAt:{
+    createdAt: {
         type: Date,
         default: Date.now
     }
@@ -48,16 +48,33 @@ const tutorial = new mongoose.Schema({    //schema for storing TUTORIAL question
         type: String,
         required: true
     },
-    createdAt:{
+    createdAt: {
         type: Date,
         default: Date.now
     }
 });
 
-const technical_db = mongoose.model('technical',technical);
-const tutorial_db = mongoose.model('tutorial',tutorial);
+const update = new mongoose.Schema({
+    version: {
+        type: String,
+        required: true,
+    },
 
+    releaseDate: {
+        type: String,
+        required: true,
+    },
+
+    description: {
+        type: String
+    }
+});
+
+const technical_db = mongoose.model('technical', technical);
+const tutorial_db = mongoose.model('tutorial', tutorial);
+const update_db = mongoose.model('update', update);
 export const chatbot = {
     technical_db,
-    tutorial_db
+    tutorial_db,
+    update_db,
 }

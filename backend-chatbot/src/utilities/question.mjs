@@ -36,5 +36,12 @@ export const sgdmsChatbot = {
             "question": "How to get bin location?",
             "answer": "1. Explanation.<br>2. Explanation.<br>3. Explanation."
         }
+    ],
+    "update": [
+        {
+            "version": "1.0",
+            "releaseDate": "20-11-2024",
+            "description": "This is the first version of SGDMS."
+        },
     ]
 }

@@ -40,3 +40,22 @@ export const guides = async () => {
         console.error(error);
     }
 };
+
+export const update = async () => {
+
+    try {
+        // check db for questions 
+        const check = await chatbot.update_db.estimatedDocumentCount();
+        if (check > 0) {
+            console.log('updates details already exists')
+        } else {
+            const tech = await chatbot.update_db.insertMany(sgdmsChatbot.update);
+            if (!tech)
+                console.error("error creating tutorial db")
+        }
+        console.log('sgdms tech problems-solutions created!')
+
+    } catch (error) {
+        console.error(error);
+    }
+};
