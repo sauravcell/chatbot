@@ -79,9 +79,10 @@ route.get('/tutorialQuestion', async (req, res) => {
 route.get('/update', async (req, res) => {
     try {
         const data = await chatbot.update_db.find({}, {
-            "description": 1
+            "description": 1,
+            "_id": 0
         });
-        console.log('updates',data);
+        console.log('updates', data);
         if (!data)
             responseHandler.error('updates not found.', 500, res);
         responseHandler.success('updates fetched successfully', 200, data, res);
